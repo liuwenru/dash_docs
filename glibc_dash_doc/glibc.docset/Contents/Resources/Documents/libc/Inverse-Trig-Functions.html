@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html><!-- This file documents the GNU C Library.
+
+This is
+The GNU C Library Reference Manual, for version
+2.31.
+
+Copyright (C) 1993-2020 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version
+1.3 or any later version published by the Free
+Software Foundation; with the Invariant Sections being "Free Software
+Needs Free Documentation" and "GNU Lesser General Public License",
+the Front-Cover texts being "A GNU Manual", and with the Back-Cover
+Texts as in (a) below.  A copy of the license is included in the
+section entitled "GNU Free Documentation License".
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual.  Buying copies from the FSF
+supports it in developing GNU and promoting software freedom." --><!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<a class="dashingAutolink" name="autolink-1706"></a><a class="dashAnchor" name="//apple_ref/cpp/Category/Inverse%20Trig%20Functions%20%28The%20GNU%20C%20Library%29"></a><title>Inverse Trig Functions (The GNU C Library)</title>
+
+<meta name="description" content="Inverse Trig Functions (The GNU C Library)"/>
+<meta name="keywords" content="Inverse Trig Functions (The GNU C Library)"/>
+<meta name="resource-type" content="document"/>
+<meta name="distribution" content="global"/>
+<meta name="Generator" content="makeinfo"/>
+<link href="index.html#Top" rel="start" title="Top"/>
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index"/>
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents"/>
+<link href="Mathematics.html#Mathematics" rel="up" title="Mathematics"/>
+<link href="Exponents-and-Logarithms.html#Exponents-and-Logarithms" rel="next" title="Exponents and Logarithms"/>
+<link href="Trig-Functions.html#Trig-Functions" rel="prev" title="Trig Functions"/>
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Inverse-Trig-Functions"></span><div class="header">
+<p>
+Next: <a href="Exponents-and-Logarithms.html#Exponents-and-Logarithms" accesskey="n" rel="next">Exponents and Logarithms</a>, Previous: <a href="Trig-Functions.html#Trig-Functions" accesskey="p" rel="prev">Trig Functions</a>, Up: <a href="Mathematics.html#Mathematics" accesskey="u" rel="up">Mathematics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr/>
+<span id="Inverse-Trigonometric-Functions"></span><a class="dashingAutolink" name="autolink-1670"></a><a class="dashAnchor" name="//apple_ref/cpp/Section/19.3%20Inverse%20Trigonometric%20Functions"></a><h3 class="section">19.3 Inverse Trigonometric Functions</h3>
+<span id="index-inverse-trigonometric-functions"></span>
+
+<p>These are the usual arcsine, arccosine and arctangent functions,
+which are the inverses of the sine, cosine and tangent functions
+respectively.
+</p>
+<dl>
+<dt id="index-asin">Function: <em>double</em> <a class="dashingAutolink" name="autolink-1671"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/asin"></a><strong>asin</strong> <em>(double <var>x</var>)</em></dt>
+<dt id="index-asinf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-1672"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/asinf"></a><strong>asinf</strong> <em>(float <var>x</var>)</em></dt>
+<dt id="index-asinl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-1673"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/asinl"></a><strong>asinl</strong> <em>(long double <var>x</var>)</em></dt>
+<dt id="index-asinfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-1674"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/asinfN"></a><strong>asinfN</strong> <em>(_Float<var>N</var> <var>x</var>)</em></dt>
+<dt id="index-asinfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-1675"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/asinfNx"></a><strong>asinfNx</strong> <em>(_Float<var>N</var>x <var>x</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions compute the arcsine of <var>x</var>&mdash;that is, the value whose
+sine is <var>x</var>.  The value is in units of radians.  Mathematically,
+there are infinitely many such values; the one actually returned is the
+one between <code>-pi/2</code> and <code>pi/2</code> (inclusive).
+</p>
+<p>The arcsine function is defined mathematically only
+over the domain <code>-1</code> to <code>1</code>.  If <var>x</var> is outside the
+domain, <code>asin</code> signals a domain error.
+</p></dd></dl>
+
+<dl>
+<dt id="index-acos">Function: <em>double</em> <a class="dashingAutolink" name="autolink-1676"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/acos"></a><strong>acos</strong> <em>(double <var>x</var>)</em></dt>
+<dt id="index-acosf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-1677"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/acosf"></a><strong>acosf</strong> <em>(float <var>x</var>)</em></dt>
+<dt id="index-acosl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-1678"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/acosl"></a><strong>acosl</strong> <em>(long double <var>x</var>)</em></dt>
+<dt id="index-acosfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-1679"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/acosfN"></a><strong>acosfN</strong> <em>(_Float<var>N</var> <var>x</var>)</em></dt>
+<dt id="index-acosfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-1680"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/acosfNx"></a><strong>acosfNx</strong> <em>(_Float<var>N</var>x <var>x</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions compute the arccosine of <var>x</var>&mdash;that is, the value
+whose cosine is <var>x</var>.  The value is in units of radians.
+Mathematically, there are infinitely many such values; the one actually
+returned is the one between <code>0</code> and <code>pi</code> (inclusive).
+</p>
+<p>The arccosine function is defined mathematically only
+over the domain <code>-1</code> to <code>1</code>.  If <var>x</var> is outside the
+domain, <code>acos</code> signals a domain error.
+</p></dd></dl>
+
+<dl>
+<dt id="index-atan">Function: <em>double</em> <a class="dashingAutolink" name="autolink-1681"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atan"></a><strong>atan</strong> <em>(double <var>x</var>)</em></dt>
+<dt id="index-atanf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-1682"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atanf"></a><strong>atanf</strong> <em>(float <var>x</var>)</em></dt>
+<dt id="index-atanl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-1683"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atanl"></a><strong>atanl</strong> <em>(long double <var>x</var>)</em></dt>
+<dt id="index-atanfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-1684"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atanfN"></a><strong>atanfN</strong> <em>(_Float<var>N</var> <var>x</var>)</em></dt>
+<dt id="index-atanfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-1685"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atanfNx"></a><strong>atanfNx</strong> <em>(_Float<var>N</var>x <var>x</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions compute the arctangent of <var>x</var>&mdash;that is, the value
+whose tangent is <var>x</var>.  The value is in units of radians.
+Mathematically, there are infinitely many such values; the one actually
+returned is the one between <code>-pi/2</code> and <code>pi/2</code> (inclusive).
+</p></dd></dl>
+
+<dl>
+<dt id="index-atan2">Function: <em>double</em> <a class="dashingAutolink" name="autolink-1686"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atan2"></a><strong>atan2</strong> <em>(double <var>y</var>, double <var>x</var>)</em></dt>
+<dt id="index-atan2f">Function: <em>float</em> <a class="dashingAutolink" name="autolink-1687"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atan2f"></a><strong>atan2f</strong> <em>(float <var>y</var>, float <var>x</var>)</em></dt>
+<dt id="index-atan2l">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-1688"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atan2l"></a><strong>atan2l</strong> <em>(long double <var>y</var>, long double <var>x</var>)</em></dt>
+<dt id="index-atan2fN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-1689"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atan2fN"></a><strong>atan2fN</strong> <em>(_Float<var>N</var> <var>y</var>, _Float<var>N</var> <var>x</var>)</em></dt>
+<dt id="index-atan2fNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-1690"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/atan2fNx"></a><strong>atan2fNx</strong> <em>(_Float<var>N</var>x <var>y</var>, _Float<var>N</var>x <var>x</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function computes the arctangent of <var>y</var>/<var>x</var>, but the signs
+of both arguments are used to determine the quadrant of the result, and
+<var>x</var> is permitted to be zero.  The return value is given in radians
+and is in the range <code>-pi</code> to <code>pi</code>, inclusive.
+</p>
+<p>If <var>x</var> and <var>y</var> are coordinates of a point in the plane,
+<code>atan2</code> returns the signed angle between the line from the origin
+to that point and the x-axis.  Thus, <code>atan2</code> is useful for
+converting Cartesian coordinates to polar coordinates.  (To compute the
+radial coordinate, use <code>hypot</code>; see <a href="Exponents-and-Logarithms.html#Exponents-and-Logarithms">Exponents and Logarithms</a>.)
+</p>
+<p>If both <var>x</var> and <var>y</var> are zero, <code>atan2</code> returns zero.
+</p></dd></dl>
+
+<span id="index-inverse-complex-trigonometric-functions"></span>
+<p>ISO&nbsp;C99<!-- /@w --> defines complex versions of the inverse trig functions.
+</p>
+<dl>
+<dt id="index-casin">Function: <em>complex double</em> <a class="dashingAutolink" name="autolink-1691"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/casin"></a><strong>casin</strong> <em>(complex double <var>z</var>)</em></dt>
+<dt id="index-casinf">Function: <em>complex float</em> <a class="dashingAutolink" name="autolink-1692"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/casinf"></a><strong>casinf</strong> <em>(complex float <var>z</var>)</em></dt>
+<dt id="index-casinl">Function: <em>complex long double</em> <a class="dashingAutolink" name="autolink-1693"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/casinl"></a><strong>casinl</strong> <em>(complex long double <var>z</var>)</em></dt>
+<dt id="index-casinfN">Function: <em>complex _FloatN</em> <a class="dashingAutolink" name="autolink-1694"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/casinfN"></a><strong>casinfN</strong> <em>(complex _Float<var>N</var> <var>z</var>)</em></dt>
+<dt id="index-casinfNx">Function: <em>complex _FloatNx</em> <a class="dashingAutolink" name="autolink-1695"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/casinfNx"></a><strong>casinfNx</strong> <em>(complex _Float<var>N</var>x <var>z</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions compute the complex arcsine of <var>z</var>&mdash;that is, the
+value whose sine is <var>z</var>.  The value returned is in radians.
+</p>
+<p>Unlike the real-valued functions, <code>casin</code> is defined for all
+values of <var>z</var>.
+</p></dd></dl>
+
+<dl>
+<dt id="index-cacos">Function: <em>complex double</em> <a class="dashingAutolink" name="autolink-1696"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/cacos"></a><strong>cacos</strong> <em>(complex double <var>z</var>)</em></dt>
+<dt id="index-cacosf">Function: <em>complex float</em> <a class="dashingAutolink" name="autolink-1697"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/cacosf"></a><strong>cacosf</strong> <em>(complex float <var>z</var>)</em></dt>
+<dt id="index-cacosl">Function: <em>complex long double</em> <a class="dashingAutolink" name="autolink-1698"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/cacosl"></a><strong>cacosl</strong> <em>(complex long double <var>z</var>)</em></dt>
+<dt id="index-cacosfN">Function: <em>complex _FloatN</em> <a class="dashingAutolink" name="autolink-1699"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/cacosfN"></a><strong>cacosfN</strong> <em>(complex _Float<var>N</var> <var>z</var>)</em></dt>
+<dt id="index-cacosfNx">Function: <em>complex _FloatNx</em> <a class="dashingAutolink" name="autolink-1700"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/cacosfNx"></a><strong>cacosfNx</strong> <em>(complex _Float<var>N</var>x <var>z</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions compute the complex arccosine of <var>z</var>&mdash;that is, the
+value whose cosine is <var>z</var>.  The value returned is in radians.
+</p>
+<p>Unlike the real-valued functions, <code>cacos</code> is defined for all
+values of <var>z</var>.
+</p></dd></dl>
+
+
+<dl>
+<dt id="index-catan">Function: <em>complex double</em> <a class="dashingAutolink" name="autolink-1701"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/catan"></a><strong>catan</strong> <em>(complex double <var>z</var>)</em></dt>
+<dt id="index-catanf">Function: <em>complex float</em> <a class="dashingAutolink" name="autolink-1702"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/catanf"></a><strong>catanf</strong> <em>(complex float <var>z</var>)</em></dt>
+<dt id="index-catanl">Function: <em>complex long double</em> <a class="dashingAutolink" name="autolink-1703"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/catanl"></a><strong>catanl</strong> <em>(complex long double <var>z</var>)</em></dt>
+<dt id="index-catanfN">Function: <em>complex _FloatN</em> <a class="dashingAutolink" name="autolink-1704"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/catanfN"></a><strong>catanfN</strong> <em>(complex _Float<var>N</var> <var>z</var>)</em></dt>
+<dt id="index-catanfNx">Function: <em>complex _FloatNx</em> <a class="dashingAutolink" name="autolink-1705"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/catanfNx"></a><strong>catanfNx</strong> <em>(complex _Float<var>N</var>x <var>z</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions compute the complex arctangent of <var>z</var>&mdash;that is,
+the value whose tangent is <var>z</var>.  The value is in units of radians.
+</p></dd></dl>
+
+
+<hr/>
+<div class="header">
+<p>
+Next: <a href="Exponents-and-Logarithms.html#Exponents-and-Logarithms" accesskey="n" rel="next">Exponents and Logarithms</a>, Previous: <a href="Trig-Functions.html#Trig-Functions" accesskey="p" rel="prev">Trig Functions</a>, Up: <a href="Mathematics.html#Mathematics" accesskey="u" rel="up">Mathematics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+
+
+</body></html>

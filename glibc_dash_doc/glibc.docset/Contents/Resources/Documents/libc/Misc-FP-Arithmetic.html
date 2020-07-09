@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html><!-- This file documents the GNU C Library.
+
+This is
+The GNU C Library Reference Manual, for version
+2.31.
+
+Copyright (C) 1993-2020 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version
+1.3 or any later version published by the Free
+Software Foundation; with the Invariant Sections being "Free Software
+Needs Free Documentation" and "GNU Lesser General Public License",
+the Front-Cover texts being "A GNU Manual", and with the Back-Cover
+Texts as in (a) below.  A copy of the license is included in the
+section entitled "GNU Free Documentation License".
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual.  Buying copies from the FSF
+supports it in developing GNU and promoting software freedom." --><!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<a class="dashingAutolink" name="autolink-2058"></a><a class="dashAnchor" name="//apple_ref/cpp/Category/Misc%20FP%20Arithmetic%20%28The%20GNU%20C%20Library%29"></a><title>Misc FP Arithmetic (The GNU C Library)</title>
+
+<meta name="description" content="Misc FP Arithmetic (The GNU C Library)"/>
+<meta name="keywords" content="Misc FP Arithmetic (The GNU C Library)"/>
+<meta name="resource-type" content="document"/>
+<meta name="distribution" content="global"/>
+<meta name="Generator" content="makeinfo"/>
+<link href="index.html#Top" rel="start" title="Top"/>
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index"/>
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents"/>
+<link href="Arithmetic-Functions.html#Arithmetic-Functions" rel="up" title="Arithmetic Functions"/>
+<link href="Complex-Numbers.html#Complex-Numbers" rel="next" title="Complex Numbers"/>
+<link href="FP-Comparison-Functions.html#FP-Comparison-Functions" rel="prev" title="FP Comparison Functions"/>
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Misc-FP-Arithmetic"></span><div class="header">
+<p>
+Previous: <a href="FP-Comparison-Functions.html#FP-Comparison-Functions" accesskey="p" rel="prev">FP Comparison Functions</a>, Up: <a href="Arithmetic-Functions.html#Arithmetic-Functions" accesskey="u" rel="up">Arithmetic Functions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr/>
+<span id="Miscellaneous-FP-arithmetic-functions"></span><a class="dashingAutolink" name="autolink-2059"></a><a class="dashAnchor" name="//apple_ref/cpp/Section/20.8.7%20Miscellaneous%20FP%20arithmetic%20functions"></a><h4 class="subsection">20.8.7 Miscellaneous FP arithmetic functions</h4>
+<span id="index-minimum"></span>
+<span id="index-maximum"></span>
+<span id="index-positive-difference"></span>
+<span id="index-multiply_002dadd"></span>
+
+<p>The functions in this section perform miscellaneous but common
+operations that are awkward to express with C operators.  On some
+processors these functions can use special machine instructions to
+perform these operations faster than the equivalent C code.
+</p>
+<dl>
+<dt id="index-fmin">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2000"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmin"></a><strong>fmin</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fminf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2001"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminf"></a><strong>fminf</strong> <em>(float <var>x</var>, float <var>y</var>)</em></dt>
+<dt id="index-fminl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-2002"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminl"></a><strong>fminl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fminfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-2003"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminfN"></a><strong>fminfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fminfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-2004"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminfNx"></a><strong>fminfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code>fmin</code> function returns the lesser of the two values <var>x</var>
+and <var>y</var>.  It is similar to the expression
+</p><div class="example">
+<pre class="example">((x) &lt; (y) ? (x) : (y))
+</pre></div>
+<p>except that <var>x</var> and <var>y</var> are only evaluated once.
+</p>
+<p>If an argument is NaN, the other argument is returned.  If both arguments
+are NaN, NaN is returned.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fmax">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2005"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmax"></a><strong>fmax</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fmaxf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2006"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxf"></a><strong>fmaxf</strong> <em>(float <var>x</var>, float <var>y</var>)</em></dt>
+<dt id="index-fmaxl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-2007"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxl"></a><strong>fmaxl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fmaxfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-2008"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxfN"></a><strong>fmaxfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fmaxfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-2009"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxfNx"></a><strong>fmaxfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code>fmax</code> function returns the greater of the two values <var>x</var>
+and <var>y</var>.
+</p>
+<p>If an argument is NaN, the other argument is returned.  If both arguments
+are NaN, NaN is returned.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fminmag">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2010"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminmag"></a><strong>fminmag</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fminmagf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2011"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminmagf"></a><strong>fminmagf</strong> <em>(float <var>x</var>, float <var>y</var>)</em></dt>
+<dt id="index-fminmagl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-2012"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminmagl"></a><strong>fminmagl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fminmagfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-2013"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminmagfN"></a><strong>fminmagfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fminmagfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-2014"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fminmagfNx"></a><strong>fminmagfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions, from TS 18661-1:2014 and TS 18661-3:2015, return
+whichever of the two values <var>x</var> and <var>y</var> has the smaller absolute
+value.  If both have the same absolute value, or either is NaN, they
+behave the same as the <code>fmin</code> functions.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fmaxmag">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2015"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxmag"></a><strong>fmaxmag</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fmaxmagf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2016"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxmagf"></a><strong>fmaxmagf</strong> <em>(float <var>x</var>, float <var>y</var>)</em></dt>
+<dt id="index-fmaxmagl">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-2017"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxmagl"></a><strong>fmaxmagl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fmaxmagfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-2018"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxmagfN"></a><strong>fmaxmagfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fmaxmagfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-2019"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaxmagfNx"></a><strong>fmaxmagfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions, from TS 18661-1:2014, return whichever of the two
+values <var>x</var> and <var>y</var> has the greater absolute value.  If both
+have the same absolute value, or either is NaN, they behave the same
+as the <code>fmax</code> functions.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fdim">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2020"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdim"></a><strong>fdim</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fdimf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2021"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdimf"></a><strong>fdimf</strong> <em>(float <var>x</var>, float <var>y</var>)</em></dt>
+<dt id="index-fdiml">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-2022"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdiml"></a><strong>fdiml</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fdimfN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-2023"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdimfN"></a><strong>fdimfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fdimfNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-2024"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdimfNx"></a><strong>fdimfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code>fdim</code> function returns the positive difference between
+<var>x</var> and <var>y</var>.  The positive difference is <em><var>x</var> -
+<var>y</var></em> if <var>x</var> is greater than <var>y</var>, and <em>0</em> otherwise.
+</p>
+<p>If <var>x</var>, <var>y</var>, or both are NaN, NaN is returned.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fma">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2025"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fma"></a><strong>fma</strong> <em>(double <var>x</var>, double <var>y</var>, double <var>z</var>)</em></dt>
+<dt id="index-fmaf">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2026"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmaf"></a><strong>fmaf</strong> <em>(float <var>x</var>, float <var>y</var>, float <var>z</var>)</em></dt>
+<dt id="index-fmal">Function: <em>long double</em> <a class="dashingAutolink" name="autolink-2027"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmal"></a><strong>fmal</strong> <em>(long double <var>x</var>, long double <var>y</var>, long double <var>z</var>)</em></dt>
+<dt id="index-fmafN">Function: <em>_FloatN</em> <a class="dashingAutolink" name="autolink-2028"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmafN"></a><strong>fmafN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>, _Float<var>N</var> <var>z</var>)</em></dt>
+<dt id="index-fmafNx">Function: <em>_FloatNx</em> <a class="dashingAutolink" name="autolink-2029"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmafNx"></a><strong>fmafNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>, _Float<var>N</var>x <var>z</var>)</em></dt>
+<dd>
+
+
+<span id="index-butterfly"></span>
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code>fma</code> function performs floating-point multiply-add.  This is
+the operation <em>(<var>x</var> &amp;middot; <var>y</var>) + <var>z</var></em>, but the
+intermediate result is not rounded to the destination type.  This can
+sometimes improve the precision of a calculation.
+</p>
+<p>This function was introduced because some processors have a special
+instruction to perform multiply-add.  The C compiler cannot use it
+directly, because the expression &lsquo;<samp>x*y + z</samp>&rsquo; is defined to round the
+intermediate result.  <code>fma</code> lets you choose when you want to round
+only once.
+</p>
+<span id="index-FP_005fFAST_005fFMA"></span>
+<p>On processors which do not implement multiply-add in hardware,
+<code>fma</code> can be very slow since it must avoid intermediate rounding.
+<samp>math.h</samp> defines the symbols <code>FP_FAST_FMA</code>,
+<code>FP_FAST_FMAF</code>, and <code>FP_FAST_FMAL</code> when the corresponding
+version of <code>fma</code> is no slower than the expression &lsquo;<samp>x*y + z</samp>&rsquo;.
+In the GNU C Library, this always means the operation is implemented in
+hardware.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fadd">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2030"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fadd"></a><strong>fadd</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-faddl">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2031"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/faddl"></a><strong>faddl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-daddl">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2032"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/daddl"></a><strong>daddl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fMaddfN">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2033"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMaddfN"></a><strong>fMaddfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMaddfNx">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2034"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMaddfNx"></a><strong>fMaddfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dt id="index-fMxaddfN">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2035"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxaddfN"></a><strong>fMxaddfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMxaddfNx">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2036"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxaddfNx"></a><strong>fMxaddfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions, from TS 18661-1:2014 and TS 18661-3:2015, return
+<em><var>x</var> + <var>y</var></em>, rounded once to the return type of the
+function without any intermediate rounding to the type of the
+arguments.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fsub">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2037"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fsub"></a><strong>fsub</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fsubl">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2038"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fsubl"></a><strong>fsubl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-dsubl">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2039"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/dsubl"></a><strong>dsubl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fMsubfN">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2040"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMsubfN"></a><strong>fMsubfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMsubfNx">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2041"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMsubfNx"></a><strong>fMsubfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dt id="index-fMxsubfN">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2042"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxsubfN"></a><strong>fMxsubfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMxsubfNx">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2043"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxsubfNx"></a><strong>fMxsubfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions, from TS 18661-1:2014 and TS 18661-3:2015, return
+<em><var>x</var> - <var>y</var></em>, rounded once to the return type of the
+function without any intermediate rounding to the type of the
+arguments.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fmul">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2044"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmul"></a><strong>fmul</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fmull">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2045"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fmull"></a><strong>fmull</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-dmull">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2046"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/dmull"></a><strong>dmull</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fMmulfN">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2047"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMmulfN"></a><strong>fMmulfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMmulfNx">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2048"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMmulfNx"></a><strong>fMmulfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dt id="index-fMxmulfN">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2049"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxmulfN"></a><strong>fMxmulfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMxmulfNx">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2050"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxmulfNx"></a><strong>fMxmulfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions, from TS 18661-1:2014 and TS 18661-3:2015, return
+<em><var>x</var> * <var>y</var></em>, rounded once to the return type of the
+function without any intermediate rounding to the type of the
+arguments.
+</p></dd></dl>
+
+<dl>
+<dt id="index-fdiv">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2051"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdiv"></a><strong>fdiv</strong> <em>(double <var>x</var>, double <var>y</var>)</em></dt>
+<dt id="index-fdivl">Function: <em>float</em> <a class="dashingAutolink" name="autolink-2052"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fdivl"></a><strong>fdivl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-ddivl">Function: <em>double</em> <a class="dashingAutolink" name="autolink-2053"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/ddivl"></a><strong>ddivl</strong> <em>(long double <var>x</var>, long double <var>y</var>)</em></dt>
+<dt id="index-fMdivfN">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2054"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMdivfN"></a><strong>fMdivfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMdivfNx">Function: <em>_FloatM</em> <a class="dashingAutolink" name="autolink-2055"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMdivfNx"></a><strong>fMdivfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dt id="index-fMxdivfN">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2056"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxdivfN"></a><strong>fMxdivfN</strong> <em>(_Float<var>N</var> <var>x</var>, _Float<var>N</var> <var>y</var>)</em></dt>
+<dt id="index-fMxdivfNx">Function: <em>_FloatMx</em> <a class="dashingAutolink" name="autolink-2057"></a><a class="dashAnchor" name="//apple_ref/cpp/Function/fMxdivfNx"></a><strong>fMxdivfNx</strong> <em>(_Float<var>N</var>x <var>x</var>, _Float<var>N</var>x <var>y</var>)</em></dt>
+<dd>
+
+
+
+
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a href="POSIX-Safety-Concepts.html#POSIX-Safety-Concepts">POSIX Safety Concepts</a>.
+</p>
+
+<p>These functions, from TS 18661-1:2014 and TS 18661-3:2015, return
+<em><var>x</var> / <var>y</var></em>, rounded once to the return type of the
+function without any intermediate rounding to the type of the
+arguments.
+</p></dd></dl>
+
+<hr/>
+<div class="header">
+<p>
+Previous: <a href="FP-Comparison-Functions.html#FP-Comparison-Functions" accesskey="p" rel="prev">FP Comparison Functions</a>, Up: <a href="Arithmetic-Functions.html#Arithmetic-Functions" accesskey="u" rel="up">Arithmetic Functions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+
+
+</body></html>
